@@ -37,6 +37,9 @@ def test_api(endpoint, method="GET", data=None):
 
 
 def run_external_test_tool(command):
-    
+
     try:
-        result = subprocess.run(command, shell=True, text=True, shell=True
+        result = subprocess.run(command, shell=True, text=True, shell=True)
+        print(f"Resultado del comando '{command}':\n{result.stdout}")
+    except Exception as e:
+        print(f"Error al ejecutar el comando externo: {e}")
