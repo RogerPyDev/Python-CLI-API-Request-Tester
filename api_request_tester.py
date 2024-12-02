@@ -50,10 +50,37 @@ def main():
     print("1. Probar un endpoint API")
     print("2. Ejecutar una herramienta externa para pruebas")
     print("3. Salir")
-    
+
     while True:
         choice = input("\nSelecciona una opción: ")
-        
+
         if choice == "1":
-            
+
             endpoint = input("Ingresa el URL del endpoint: ")
+            method = input("Ingresa el método HTTP (GET/POST): ").upper()
+            if method == "POST":
+                data = input("Ingresa los datos en formato JSON (Opcional): ")
+                try:
+                    data = eval(data) if data.strip() else None
+                except Exception:
+                    print("Formato JSON inválido.")
+                    data = None
+
+            status_code, response_text = test_api(endpoint, method, data)
+            if status_code:
+                print("\nRespuesta del API:")
+                print(f"\nStatus Code: {status_code}")
+                print(f"Code:\n{response_text}")
+            else:
+                print("No se puedo obtener una respuesta del API.")
+
+        elif choice == "2":
+            command = input("Ingresa el comando de la herramienta externa: ")
+            run_external_test_tool(command)
+
+        elif choice == "3":
+            print("¡Gracias por usar el API Request Tester!")
+            sys.exit()
+
+        else:
+            print("Opción no válida. Inténtalo de nuevo")
