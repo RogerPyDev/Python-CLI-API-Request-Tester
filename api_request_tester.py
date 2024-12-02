@@ -43,3 +43,17 @@ def run_external_test_tool(command):
         print(f"Resultado del comando '{command}':\n{result.stdout}")
     except Exception as e:
         print(f"Error al ejecutar el comando externo: {e}")
+
+
+def main():
+    print("Bienvenido al Api Request Tester")
+    print("1. Probar un endpoint API")
+    print("2. Ejecutar una herramienta externa para pruebas")
+    print("3. Salir")
+    
+    while True:
+        choice = input("\nSelecciona una opción: ")
+        
+        if choice == "1":
+            
+            endpoint = input("Ingresa el URL del endpoint: ")
