@@ -110,8 +110,8 @@ Este proyecto fue diseñado como parte de un aprendizaje práctico de Python. ¡
 ---
 
 ## 📧 **Contacto**
-Creador: [Tu Nombre](https://github.com/RogerPyDev)   
-GitHub: [Tu Usuario](https://github.com/RogerPyDev)
+Creador: [RogerPyDev](https://github.com/RogerPyDev)   
+GitHub: [RogerPyDev](https://github.com/RogerPyDev)
 
 ---
 
