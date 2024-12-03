@@ -1,6 +1,6 @@
-import requests
-import subprocess
-import sys
+import requests  # Para interactuar con APIs REST
+import subprocess  # Para ejecutar herramientas externas
+import sys  # Para manejar argumentos de línea de comandos
 
 
 def test_api(endpoint, method="GET", data=None):
@@ -20,7 +20,7 @@ def test_api(endpoint, method="GET", data=None):
 
     try:
 
-        #  Selecciona el m{etodo HTTP}
+        #  Selecciona el método HTTP}
 
         if method.upper() == "GET":
             response = requests.get(endpoint)
@@ -38,6 +38,13 @@ def test_api(endpoint, method="GET", data=None):
 
 def run_external_test_tool(command):
 
+    """
+    Ejecuta una herramienta de prueba externa y muestra el resultado.
+
+    Parámetros:
+    - command: Comando de la herramienta externa a ejecutar.
+    """
+
     try:
         result = subprocess.run(command, shell=True, text=True)
         print(f"Resultado del comando '{command}':\n{result.stdout}")
@@ -46,6 +53,9 @@ def run_external_test_tool(command):
 
 
 def main():
+
+    # Programa principal para interactuar con el usuario desde la consola.
+
     print("Bienvenido al Api Request Tester")
     print("1. Probar un endpoint API")
     print("2. Ejecutar una herramienta externa para pruebas")
@@ -56,16 +66,19 @@ def main():
 
         if choice == "1":
 
+            # Prueba de endpoint API
+
             endpoint = input("Ingresa el URL del endpoint: ")
             method = input("Ingresa el método HTTP (GET/POST): ").upper()
             if method == "POST":
                 data = input("Ingresa los datos en formato JSON (Opcional): ")
                 try:
-                    data = eval(data) if data.strip() else None
+                    data = eval(data) if data.strip() else None  # Convierte string a diccionario
                 except Exception:
                     print("Formato JSON inválido.")
                     data = None
 
+            # Llamada a la función para probar el endpoint
             status_code, response_text = test_api(endpoint, method, data)
             if status_code:
                 print("\nRespuesta del API:")
@@ -75,10 +88,16 @@ def main():
                 print("No se puedo obtener una respuesta del API.")
 
         elif choice == "2":
+
+            # Ejecución de herramienta externa
+
             command = input("Ingresa el comando de la herramienta externa: ")
             run_external_test_tool(command)
 
         elif choice == "3":
+
+            # Salir del programa
+
             print("¡Gracias por usar el API Request Tester!")
             sys.exit()
 
